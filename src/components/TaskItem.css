@@ -1,0 +1,9 @@
+.complete{
+    color: green;
+    text-decoration: double;
+}
+
+.Incomplete{
+    color: red;
+    text-decoration: solid
+}
