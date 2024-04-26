@@ -25,8 +25,8 @@ const TaskList = ({ tasks, filteredStatus, isAddTaskFormVisible, setIsAddTaskFor
         <option value="pending">Pending Tasks</option>
       </select>
       <ul>
-        {filteredTasks.map((task) => (
-          <TaskItem key={task.id} task={task} isAddTaskFormVisible={isAddTaskFormVisible} setIsAddTaskFormVisible={setIsAddTaskFormVisible} />
+        {filteredTasks.map((task,index) => (
+          <TaskItem key={index} task={task} isAddTaskFormVisible={isAddTaskFormVisible} setIsAddTaskFormVisible={setIsAddTaskFormVisible} />
         ))}
       </ul>
     </div>

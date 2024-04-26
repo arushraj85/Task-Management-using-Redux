@@ -16,6 +16,7 @@ const TaskItem = ({ task, isAddTaskFormVisible, setIsAddTaskFormVisible }) => {
 
     const handleEdit = (task)=>{
         dispatch(editTask(task))
+        console.log(task)
         setIsAddTaskFormVisible(true)
     }
 

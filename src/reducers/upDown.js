@@ -32,6 +32,8 @@ const taskReducer = (state = initialState, action) => {
       };
     case "EDIT_TASK":
       return { ...state, editingTask: action.payload };
+      case "CANCEL_TASK":
+      return { ...state, editingTask: action.payload };
     case "UPDATE_TASK":
       return {
         ...state,

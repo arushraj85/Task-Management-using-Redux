@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
-import { addTask,editTask,updateTask } from '../actions/index';
+import { addTask,updateTask } from '../actions/index';
 import './AddTaskForm.css'; // Add CSS for styling
 
 const AddTaskForm = ({ visible,onSubmit,onCancel }) => {
    
     const dispatch = useDispatch();
     const tasks= useSelector(state => state.taskReducer.tasks)
-    console.log(tasks)
+    // console.log(tasks)
     const editingTask = useSelector(state => state.taskReducer.editingTask);
-    console.log(editingTask?.title)
+    // console.log(editingTask)
 
     const [title, setTitle] = useState(editingTask ? editingTask.title : '');
     const [description, setDescription] = useState(editingTask ? editingTask.description : '');
@@ -44,7 +44,7 @@ const AddTaskForm = ({ visible,onSubmit,onCancel }) => {
         setErrors(validationErrors);
         
         const newTask = {
-            id: tasks.length+1,
+            id:tasks.length+1,
             title,
             description,
             dueDate
@@ -52,10 +52,26 @@ const AddTaskForm = ({ visible,onSubmit,onCancel }) => {
 
         if (Object.keys(validationErrors).length === 0) {
             if(editingTask){
-                dispatch(updateTask(newTask))
+                dispatch(updateTask({
+                    id:editingTask.id,
+                    title,
+                    description,
+                    dueDate
+                  }))
+                console.log({
+                    id:editingTask.id,
+                    title,
+                    description,
+                    dueDate
+                  })
             }
             else{
-            dispatch(addTask(newTask));
+            dispatch(addTask({
+                id:tasks.length+1,
+                title,
+                description,
+                dueDate
+              }));
             }
             setTitle('');
             setDescription('');

@@ -24,6 +24,11 @@ export const deleteTask = (id) => ({
     payload: id,
 });
 
+export const cancelTask = () => ({
+    type: "CANCEL_TASK",
+    payload: null
+});
+
 export const updateTask = (task) => ({
     type: "UPDATE_TASK",
     // payload: { id: uuidv4(), ...task },
