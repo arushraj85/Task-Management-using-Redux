@@ -10,11 +10,18 @@ const TaskList = ({ tasks, filteredStatus, isAddTaskFormVisible, setIsAddTaskFor
   const handleFilterChange = (event) => {
     dispatch(filterTasksByStatus(event.target.value));
   };
+
   const filteredTasks = tasks.filter((task) => {
     if (filteredStatus === "all") {
       return tasks;
     }
-    return task.status === (filteredStatus === "completed");
+    else if ((filteredStatus === "completed")){
+      return task.status === true
+    }
+    // else if (filteredStatus === "pending"){
+      return task.status === false
+    // }
+    // return task.status === (filteredStatus === "completed");
   });
 
   return (

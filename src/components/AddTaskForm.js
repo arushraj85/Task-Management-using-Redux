@@ -9,11 +9,13 @@ const AddTaskForm = ({ visible,onSubmit,onCancel }) => {
     const tasks= useSelector(state => state.taskReducer.tasks)
     // console.log(tasks)
     const editingTask = useSelector(state => state.taskReducer.editingTask);
+    const editingStatus = editingTask?.status
     // console.log(editingTask)
 
     const [title, setTitle] = useState(editingTask ? editingTask.title : '');
     const [description, setDescription] = useState(editingTask ? editingTask.description : '');
     const [dueDate, setDueDate] = useState(editingTask ? editingTask.dueDate : '');
+    // const [status, setStatus] = useState(editingTask ? editingTask.status : '');
     const [errors, setErrors] = useState({});
 
     const handleSubmit = (event) => {
@@ -43,12 +45,7 @@ const AddTaskForm = ({ visible,onSubmit,onCancel }) => {
 
         setErrors(validationErrors);
         
-        const newTask = {
-            id:tasks.length+1,
-            title,
-            description,
-            dueDate
-          };
+        
 
         if (Object.keys(validationErrors).length === 0) {
             if(editingTask){
@@ -56,7 +53,8 @@ const AddTaskForm = ({ visible,onSubmit,onCancel }) => {
                     id:editingTask.id,
                     title,
                     description,
-                    dueDate
+                    dueDate,
+                    status: editingStatus
                   }))
                 console.log({
                     id:editingTask.id,
@@ -70,7 +68,8 @@ const AddTaskForm = ({ visible,onSubmit,onCancel }) => {
                 id:tasks.length+1,
                 title,
                 description,
-                dueDate
+                dueDate,
+                status: false
               }));
             }
             setTitle('');
